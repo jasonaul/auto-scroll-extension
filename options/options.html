@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Auto Scroller Options</title>
+    <link rel="stylesheet" href="options.css">
+    </head>
+<body>
+
+<div class="container">
+    <h1>Auto Scroller Options</h1>
+
+    <div class="setting-group">
+        <label for="defaultSpeedSlider">Default Scroll Speed:</label>
+        <div class="speed-control">
+            <input type="range" id="defaultSpeedSlider" min="0" max="100" value="50" step="1">
+            <input type="number" id="defaultSpeedInput" min="1" max="1000" value="50">
+             <span>px/s</span>
+        </div>
+    </div>
+    <div class="setting-group">
+        <label for="autoStartMode">Auto-Start Mode:</label>
+        <select id="autoStartMode">
+            <option value="off">Off (Manual Start Only)</option>
+            <option value="all">Start on All Pages</option>
+            <option value="whitelist">Start on Whitelisted Pages Only</option>
+        </select>
+    </div>
+
+     <div id="autoStartDelayGroup" class="setting-group hidden"> <label for="autoStartDelay">Auto-Start Delay (seconds):</label>
+        <input type="number" id="autoStartDelay" min="0" step="1" value="5">
+    </div>
+
+     <div id="whitelistGroup" class="setting-group hidden"> <label for="autoStartWhitelist">Auto-Start Whitelist (one domain per line, e.g., google.com):</label>
+        <textarea id="autoStartWhitelist" placeholder="example.com&#10;anothersite.org"></textarea>
+    </div>
+
+
+    <div class="setting-group">
+        <label>Site-Specific Speeds:</label>
+        <div id="siteSpeedsContainer">
+            </div>
+        <button type="button" id="addSiteSpeed">Add Site Speed</button> </div>
+
+    <button type="button" id="saveButton">Save Settings</button> <div id="status"></div> </div>
+
+<script src="options.js"></script>
+</body>
+</html>

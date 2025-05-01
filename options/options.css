@@ -1,0 +1,253 @@
+/* auto-scroll/options/options.css */
+:root {
+    /* Same variables as popup.css for consistency */
+   --primary-color: #1976D2;
+   --primary-light: #64B5F6;
+   --primary-dark: #0D47A1;
+   --accent-color: #4CAF50;
+   --accent-dark: #388E3C;
+   --warn-color: #D32F2F;
+   --text-primary: rgba(0, 0, 0, 0.87);
+   --text-secondary: rgba(0, 0, 0, 0.6);
+   --background-color: #f5f5f5;
+   --surface-color: #ffffff;
+   --border-color: rgba(0, 0, 0, 0.12);
+   --hover-overlay: rgba(0, 0, 0, 0.04);
+   --focus-ring: 2px solid var(--primary-light);
+
+   --body-font: 'Roboto', 'Segoe UI', sans-serif;
+   --base-font-size: 14px;
+   --border-radius: 4px;
+   --padding: 16px;
+   --control-height: 40px; /* Slightly taller controls for options */
+}
+
+body {
+   font-family: var(--body-font);
+   font-size: var(--base-font-size);
+   color: var(--text-primary);
+   background-color: var(--background-color);
+   margin: 0; /* Remove default margin */
+   padding: 0; /* Padding will be on container */
+}
+
+.container {
+   max-width: 700px;
+   margin: 24px auto; /* Center with top/bottom margin */
+   background-color: var(--surface-color);
+   padding: 24px 32px; /* More padding */
+   border-radius: 8px; /* Rounded corners */
+   box-shadow: 0 2px 4px rgba(0,0,0,0.1), 0 8px 16px rgba(0,0,0,0.1); /* Subtle shadow */
+}
+
+h1 {
+   text-align: center;
+   color: var(--text-primary);
+   font-size: 1.8em; /* Larger title */
+   font-weight: 400; /* Regular weight */
+   margin: 0 0 32px 0; /* More bottom margin */
+}
+
+.setting-group {
+   margin-bottom: 28px;
+   padding-bottom: 24px;
+   border-bottom: 1px solid var(--border-color);
+}
+.setting-group:last-of-type { /* Use last-of-type for reliability */
+   border-bottom: none;
+   margin-bottom: 0;
+   padding-bottom: 0;
+}
+
+label {
+   display: block;
+   margin-bottom: 10px; /* More space below label */
+   font-weight: 500; /* Medium weight label */
+   color: var(--text-primary);
+   font-size: 1.05em; /* Slightly larger label */
+}
+
+/* Input & Select Styling */
+input[type="number"],
+input[type="text"],
+select,
+textarea {
+   width: 100%; /* Full width */
+   padding: 0 12px;
+   height: var(--control-height);
+   border: 1px solid var(--border-color);
+   border-radius: var(--border-radius);
+   font-size: 1em;
+   box-sizing: border-box;
+   background-color: #fff; /* Ensure white background */
+   transition: border-color 0.2s ease, box-shadow 0.2s ease;
+   outline: none;
+}
+input[type="number"]:focus,
+input[type="text"]:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px var(--primary-light); /* Focus indicator */
+}
+input[type="number"].error-border, /* Add class via JS for error */
+input[type="text"].error-border,
+textarea.error-border {
+    border-color: var(--warn-color);
+}
+
+
+textarea {
+   height: auto; /* Allow natural height */
+   min-height: 100px;
+   padding-top: 10px; /* Padding inside textarea */
+   padding-bottom: 10px;
+   resize: vertical;
+}
+
+select {
+   appearance: none; /* Remove default arrow */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%204%205%22%3E%3Cpath%20fill%3D%22%23666%22%20d%3D%22M2%200L0%202h4zm0%205L0%203h4z%22/%3E%3C/svg%3E'); /* Simple dropdown arrow */
+   background-repeat: no-repeat;
+   background-position: right 10px center;
+   background-size: 8px 10px;
+   padding-right: 30px; /* Space for arrow */
+}
+
+
+/* Default Speed Control Layout */
+.speed-control { /* Reuse class from popup if desired */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.speed-control input[type="range"] {
+     flex-grow: 1;
+    /* Copy slider styles from popup.css */
+   height: 4px;
+   cursor: pointer;
+   appearance: none;
+   background: var(--primary-light);
+   border-radius: 2px;
+   outline: none;
+   margin: 0;
+   padding: 0;
+}
+ .speed-control input[type="range"]::-webkit-slider-thumb { /* Add vendor prefixes if needed */
+    appearance: none; width: 14px; height: 14px; background: var(--primary-color);
+    border-radius: 50%; cursor: pointer; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+  .speed-control input[type="range"]::-moz-range-thumb {
+    width: 14px; height: 14px; background: var(--primary-color);
+    border-radius: 50%; cursor: pointer; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+.speed-control input[type="number"] {
+    width: 70px; /* Slightly wider */
+    text-align: right;
+    height: var(--control-height); /* Match other inputs */
+}
+.speed-control span {
+    font-size: 0.9em;
+    color: var(--text-secondary);
+}
+
+/* Site Speed Specific Styling */
+.site-speed-entry {
+   display: flex;
+   align-items: center;
+   margin-bottom: 12px;
+   gap: 10px; /* Spacing between elements */
+   padding: 8px;
+   border-radius: var(--border-radius);
+   transition: background-color 0.2s ease;
+}
+.site-speed-entry:hover {
+    background-color: var(--hover-overlay);
+}
+
+.site-speed-entry input[type="text"] {
+   flex-grow: 1; /* Domain takes up available space */
+   width: auto;
+   height: calc(var(--control-height) - 4px); /* Slightly shorter */
+}
+.site-speed-entry input[type="number"] {
+   width: 80px;
+   height: calc(var(--control-height) - 4px);
+}
+.site-speed-entry button { /* Remove button */
+   background-color: transparent;
+   color: var(--warn-color);
+   border: none;
+   border-radius: 50%; /* Make it circular */
+   cursor: pointer;
+   font-weight: bold;
+   font-size: 1.2em; /* Larger X */
+   padding: 0;
+   width: 30px;
+   height: 30px;
+   line-height: 30px; /* Center X vertically */
+   text-align: center;
+   flex-shrink: 0; /* Don't shrink */
+   transition: background-color 0.2s ease;
+}
+.site-speed-entry button:hover {
+    background-color: rgba(211, 47, 47, 0.1); /* Light red background on hover */
+}
+.site-speed-entry button::before {
+    content: '×'; /* Use multiplication sign for remove */
+}
+
+/* Add Site Speed Button */
+#addSiteSpeed {
+   background-color: transparent;
+   color: var(--primary-color);
+   border: 1px solid var(--primary-color);
+   padding: 0 16px;
+   height: var(--control-height);
+   font-weight: 500;
+   text-transform: uppercase;
+   border-radius: var(--border-radius);
+   cursor: pointer;
+   transition: background-color 0.2s ease, color 0.2s ease;
+   margin-top: 10px;
+}
+ #addSiteSpeed:hover {
+    background-color: rgba(25, 118, 210, 0.08); /* Primary color light overlay */
+ }
+
+/* Save Button */
+#saveButton {
+   padding: 0 24px; /* More horizontal padding */
+   height: calc(var(--control-height) + 4px); /* Slightly taller */
+   background-color: var(--primary-color);
+   color: white;
+   border: none;
+   border-radius: var(--border-radius);
+   cursor: pointer;
+   font-size: 1em;
+   font-weight: 500;
+   text-transform: uppercase;
+   letter-spacing: 0.05em;
+   transition: background-color 0.2s ease, box-shadow 0.2s ease;
+   display: block; /* Center button */
+   margin: 24px auto 0 auto; /* Spacing and centering */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+#saveButton:hover {
+    background-color: var(--primary-dark);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+/* Status Message */
+#status {
+   margin-top: 20px;
+   text-align: center;
+   font-weight: 500;
+   min-height: 1.2em;
+   font-size: 0.95em;
+}
+#status.success { color: var(--accent-dark); }
+#status.error { color: var(--warn-color); }
+
+/* Utility Classes */
+.hidden { display: none !important; } /* Ensure override */

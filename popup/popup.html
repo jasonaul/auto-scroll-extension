@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Scroller</title>
+    <link rel="stylesheet" href="popup.css">
+    </head>
+<body>
+    <h3>Smooth Auto Scroller</h3>
+
+    <div class="speed-control control-group">
+        <label for="speedSlider">Speed:</label>
+        <input type="range" id="speedSlider" min="0" max="100" value="50" step="1">
+        <input type="number" id="speedInput" min="1" max="1000" value="50">
+         <span>px/s</span>
+    </div>
+    <div class="control-group">
+        <button id="toggleButton">Start Scrolling</button>
+    </div>
+
+    <div id="statusMessage" class="status">Loading...</div>
+
+    <a href="#" id="optionsLink">Options / Settings</a>
+
+    <script src="popup.js"></script>
+</body>
+</html>
